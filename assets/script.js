@@ -1,3 +1,5 @@
+//Declared Variables
+
 var startGame = $('#startGame');
 
 var timeRemaining = 60
@@ -15,6 +17,8 @@ var response1 = false
 var response2 = false
 var response3 = false
 var response4 = false
+
+//Questions for the quiz
 
 function question1() {
   question.text('Commonly used data types do NOT include: ')
@@ -52,6 +56,7 @@ function question5() {
   option4.text('console.log')
 }
 
+//Timer function for the game
 
 function startTimer() {
   timeRemaining = 60
@@ -70,6 +75,7 @@ function startTimer() {
   }, 1000);
 }
 
+//Game logic
 
 function nextQuestion() {
   if (wrongAnswers + rightAnswers === 0) {
@@ -92,9 +98,13 @@ function nextQuestion() {
 
 }
 
+//Printing the score to the scoreboard
+
 function printScore() {
 
 }
+
+//Quiz start function
 
 function startQuiz() {
   answerReset()
@@ -105,7 +115,7 @@ function startQuiz() {
   $('#optList').removeClass('d-none')
 }
 
-
+//Functions to log the user answer, to continue the game, and to reset the answers before the next question.
 
 function answerReset() {
   response1 = false
@@ -115,32 +125,30 @@ function answerReset() {
 }
 
 function alert1() {
-  console.log("btn1 pressed");
   response1 = true
   questionAnswered = true
   nextQuestion();
 }
 
 function alert2() {
-  console.log("btn2 pressed");
   questionAnswered = true
   response2 = true
   nextQuestion();
 }
 
 function alert3() {
-  console.log("btn3 pressed");
   questionAnswered = true
   response3 = true
   nextQuestion();
 }
 
 function alert4() {
-  console.log("btn4 pressed");
   questionAnswered = true
   response4 = true
   nextQuestion();
 }
+
+// event listeners for the buttons on screen
 
 startGame.on("click", startQuiz);
 option1.on("click", alert1)
