@@ -4,7 +4,6 @@ var timeRemaining = 60
 var rightAnswers = 0
 var wrongAnswers = 0
 var questionAnswered = false
-var intervalExist = false
 
 var option1 = $('#opt1')
 var option2 = $('#opt2')
@@ -18,7 +17,7 @@ var response3 = false
 var response4 = false
 
 function question1() {
-  question.text('Commonoly used data types do NOT include: ')
+  question.text('Commonly used data types do NOT include: ')
   option1.text('strings')
   option2.text('booleans')
   option3.text('alerts')
@@ -69,14 +68,31 @@ function startTimer() {
   var theInterval = setInterval(() => {
     myTimer();
   }, 1000);
-  intervalExist = true
 }
 
 
 function nextQuestion() {
   if (wrongAnswers + rightAnswers === 0) {
-    if (questionAnswered == true && response1 == true) { rightAnswers++; answerReset; question2(); } else if (response1 != true && questionAnswered == true) { wrongAnswers++; answerReset; question2(); }
+    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question2(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; question2(); questionAnswered = false; }
   }
+  if (wrongAnswers + rightAnswers === 1) {
+    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question3(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; question3(); questionAnswered = false; }
+  }
+  if (wrongAnswers + rightAnswers === 2) {
+    if (questionAnswered == true && response4 == true) { rightAnswers++; answerReset; question4(); questionAnswered = false; } else if (response4 != true && questionAnswered == true) { wrongAnswers++; answerReset; question4(); questionAnswered = false; }
+  }
+  if (wrongAnswers + rightAnswers === 3) {
+    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question5(); questionAnswered = false; }
+    else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; questionAnswered = false; }
+  }
+  if (wrongAnswers + rightAnswers === 4) {
+    if (questionAnswered == true && response4 == true) { rightAnswers++; answerReset(); questionAnswered = false; alert("Game complete! You answered " + rightAnswers + " questions correctly") }
+    else if (response4 != true && questionAnswered == true) { wrongAnswers++; answerReset(); questionAnswered = false; alert("Game complete! You answered " + rightAnswers + " questions correctly") }
+  }
+
+}
+
+function printScore() {
 
 }
 
