@@ -18,32 +18,39 @@ var response3 = false
 var response4 = false
 
 function question1() {
-  question.text('Which of these is a fruit?')
-  option1.text('Banana')
-  option2.text('Rock')
-  option3.text('Stick')
-  option4.text('Blueberry')
+  question.text('Commonoly used data types do NOT include: ')
+  option1.text('strings')
+  option2.text('booleans')
+  option3.text('alerts')
+  option4.text('numbers')
 }
 function question2() {
-  question.text('Which of these is a fruit?')
-  option1.text('Rock')
-  option2.text('Banana')
-  option3.text('Stick')
-  option4.text('Blueberry')
+  question.text('The condition in an if / else statement is enclosed with: ')
+  option1.text('quotes')
+  option2.text('curly brackets')
+  option3.text('parenthesis')
+  option4.text('square brackets')
 }
 function question3() {
-  question.text('Which of these is a fruit?')
-  option1.text('Banana')
-  option2.text('Rock')
-  option3.text('Stick')
-  option4.text('Blueberry')
+  question.text('Arrays in JavaScript can be used to store')
+  option1.text('numbers and strings')
+  option2.text('other arrays')
+  option3.text('booleans')
+  option4.text('all of the above')
 }
-function question3() {
-  question.text('Which of these is a fruit?')
-  option1.text('Banana')
-  option2.text('Rock')
-  option3.text('Stick')
-  option4.text('Blueberry')
+function question4() {
+  question.text('String values must be enclosed within ____ when being assigned to variables')
+  option1.text('commas')
+  option2.text('curly brackets')
+  option3.text('quotes')
+  option4.text('parenthesis')
+}
+function question5() {
+  question.text('A very useful tool used during development and debugging for printing content to the debugger is: ')
+  option1.text('JavaScript')
+  option2.text('terminal / bash')
+  option3.text('for loops')
+  option4.text('console.log')
 }
 
 
