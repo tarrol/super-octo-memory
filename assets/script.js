@@ -2,7 +2,8 @@
 
 var startGame = $('#startGame');
 
-var timeRemaining = 60
+var timeRemaining = 25
+var gameDone = false
 var rightAnswers = 0
 var wrongAnswers = 0
 var questionAnswered = false
@@ -55,23 +56,31 @@ function question5() {
   option3.text('for loops')
   option4.text('console.log')
 }
+function gameReset() {
+  $('#optList').addClass('d-none');
+  questionAnswered = false;
+}
 
 //Timer function for the game
 
 function startTimer() {
-  timeRemaining = 60
+  gameDone = false;
+  timeRemaining = 25
   function myTimer() {
     timeRemaining--
     $('#time').text(timeRemaining)
-    if (timeRemaining <= 0) {
+    if (timeRemaining <= 0 && gameDone == false) {
       clearInterval(theInterval)
-      intervalExist = false
       $('#gameState').text("Sorry! You lost.")
-
+      gameReset();
+    }
+    else if (gameDone == true) {
+      clearInterval(theInterval)
     }
   }
+
   var theInterval = setInterval(() => {
-    myTimer();
+    if (timeRemaining > 0) { myTimer(); }
   }, 1000);
 }
 
@@ -79,21 +88,36 @@ function startTimer() {
 
 function nextQuestion() {
   if (wrongAnswers + rightAnswers === 0) {
-    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question2(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; question2(); questionAnswered = false; }
+    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question2(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; timeRemaining = timeRemaining - 5; answerReset; question2(); questionAnswered = false; }
   }
   if (wrongAnswers + rightAnswers === 1) {
-    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question3(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; question3(); questionAnswered = false; }
+    if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question3(); questionAnswered = false; } else if (response3 != true && questionAnswered == true) { wrongAnswers++; timeRemaining = timeRemaining - 5; answerReset; question3(); questionAnswered = false; }
   }
   if (wrongAnswers + rightAnswers === 2) {
-    if (questionAnswered == true && response4 == true) { rightAnswers++; answerReset; question4(); questionAnswered = false; } else if (response4 != true && questionAnswered == true) { wrongAnswers++; answerReset; question4(); questionAnswered = false; }
+    if (questionAnswered == true && response4 == true) { rightAnswers++; answerReset; question4(); questionAnswered = false; } else if (response4 != true && questionAnswered == true) { wrongAnswers++; timeRemaining = timeRemaining - 5; answerReset; question4(); questionAnswered = false; }
   }
   if (wrongAnswers + rightAnswers === 3) {
     if (questionAnswered == true && response3 == true) { rightAnswers++; answerReset; question5(); questionAnswered = false; }
-    else if (response3 != true && questionAnswered == true) { wrongAnswers++; answerReset; questionAnswered = false; }
+    else if (response3 != true && questionAnswered == true) { wrongAnswers++; timeRemaining = timeRemaining - 5; answerReset; questionAnswered = false; }
   }
+
+
   if (wrongAnswers + rightAnswers === 4) {
-    if (questionAnswered == true && response4 == true) { rightAnswers++; answerReset(); questionAnswered = false; alert("Game complete! You answered " + rightAnswers + " questions correctly") }
-    else if (response4 != true && questionAnswered == true) { wrongAnswers++; answerReset(); questionAnswered = false; alert("Game complete! You answered " + rightAnswers + " questions correctly") }
+    if (questionAnswered == true && response4 == true) {
+      rightAnswers++;
+      alert("Game complete! You answered " + rightAnswers + " questions correctly");
+      answerReset();
+      gameDone = true;
+      gameReset();
+    }
+
+    else if (response4 != true && questionAnswered == true) {
+      wrongAnswers++;
+      alert("Game complete! You answered " + rightAnswers + " questions correctly");
+      answerReset();
+      gameDone = true;
+      gameReset();
+    }
   }
 
 }
