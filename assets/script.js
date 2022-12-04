@@ -7,6 +7,8 @@ var gameDone = false
 var rightAnswers = 0
 var wrongAnswers = 0
 var questionAnswered = false
+let nickname
+
 
 var option1 = $('#opt1')
 var option2 = $('#opt2')
@@ -105,7 +107,8 @@ function nextQuestion() {
   if (wrongAnswers + rightAnswers === 4) {
     if (questionAnswered == true && response4 == true) {
       rightAnswers++;
-      alert("Game complete! You answered " + rightAnswers + " questions correctly");
+      nickname = prompt("Game complete! You answered " + rightAnswers + " questions correctly! If you'd like to save the score, please enter a name or your intials. If you don't want to save the score, leave it blank.");
+      printScore()
       answerReset();
       gameDone = true;
       gameReset();
@@ -113,7 +116,8 @@ function nextQuestion() {
 
     else if (response4 != true && questionAnswered == true) {
       wrongAnswers++;
-      alert("Game complete! You answered " + rightAnswers + " questions correctly");
+      nickname = prompt("Game complete! You answered " + rightAnswers + " questions correctly! If you'd like to save the score, please enter a name or your intials. If you don't want to save the score, leave it blank.");
+      printScore()
       answerReset();
       gameDone = true;
       gameReset();
@@ -124,7 +128,13 @@ function nextQuestion() {
 
 //Printing the score to the scoreboard
 
+
 function printScore() {
+  if (nickname) {
+    var test = document.createElement('li');
+    document.getElementById('leaderboards').appendChild(test);
+    test.innerHTML = nickname + " | Answers Correct: " + rightAnswers
+  }
 
 }
 
